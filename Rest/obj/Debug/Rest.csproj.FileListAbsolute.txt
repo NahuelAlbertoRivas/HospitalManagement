@@ -1,0 +1,11 @@
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Rest.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Rest.pdb
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Comun.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Modelo.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Comun.pdb
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\bin\Debug\Modelo.pdb
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\obj\Debug\Rest.csproj.AssemblyReference.cache
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\obj\Debug\Rest.csproj.CoreCompileInputs.cache
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\obj\Debug\Rest.csproj.CopyComplete
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\obj\Debug\Rest.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Rest\obj\Debug\Rest.pdb
