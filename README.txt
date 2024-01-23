@@ -1,6 +1,8 @@
-Detalles
+**It's recommended to look at both the ' Entity-Relationship Diagram ' (DER/ERD) and the ' Relational Model ' (MR/RM) for a greater understanding of the project**
 
-[Carpetas]
+Details
+
+[Folders]
 
 ' 01Comun ': "Almacena el contenido necesario correspondiente a recursos comúnes, que serán utilizados desde todas las capas (por ej. ViewModels, utilitarios, funciones para encriptar/moduladas, etc)" -' capa ' refiere a cada instancia, o bien carpeta, que se complementa en la construcción de la solución-
 ' 02Modelo ': "Una vez creado el modelo en la DB, acá se registran las entidades pertinentes, el contexto, metadatos, validadores, entre otros"

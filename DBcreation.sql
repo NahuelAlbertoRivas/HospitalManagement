@@ -25,41 +25,36 @@ create table Medico(
 	borrado bit Default 0 not null
 )
 
+create table RegistroClinico(
+	id bigint Identity(0, 1) unique not null,
+	idPaciente bigint Foreign Key references Paciente(id) on delete cascade on update cascade not null,
+	idMedico bigint Foreign Key references Medico(id) on delete cascade on update cascade not null,
+	borrado bit Default 0 not null,
+	constraint PK_RegClinico Primary Key (idPaciente, id)
+)
+alter table RegistroClinico drop constraint PK_RegClinico
+drop table RegistroClinico
+
 create table Ingreso(
-	id bigint Identity(0, 1) not null, 
+	idPaciente bigint Foreign Key references Paciente(id) on delete cascade on update cascade not null,
+	idRegClinico bigint Foreign Key references RegistroClinico(id) not null,
 	fecha datetime not null,
 	nroSala int not null,
 	nroCama int not null,
 	diagnostico varchar(max) not null,
 	observacion varchar(max),
-	borrado bit Default 0 not null,
+	constraint PK_Ingreso Primary Key (idPaciente, idRegClinico)
 )
-alter table Ingreso drop constraint PK_Ingreso
 
 create table Egreso(
-	id bigint Identity(0, 1) not null, 
+	idPaciente bigint Foreign Key references Paciente(id) on delete cascade on update cascade not null,
+	idRegClinico bigint Foreign Key references RegistroClinico(id) not null,
+	idMedico bigint Foreign Key references Medico(id) on delete cascade on update cascade not null,
 	fecha datetime not null,
 	tratamiento varchar(max),
 	monto decimal(18, 2) not null,
-	borrado bit Default 0 not null,
-	
+	constraint PK_Egreso Primary Key (idPaciente, idRegClinico)
 )
-
-/*
-	Emite
-
-	idPaciente bigint Foreign Key references Paciente(id) on delete cascade on update cascade not null,
-	idMedico bigint Foreign Key references Medico(id) on delete cascade on update cascade not null,
-	
-	constraint PK_Ingreso Primary Key (id, idPaciente, idMedico)
-
-	Concede
-
-	idMedico bigint Foreign Key references Medico(id) on delete cascade on update cascade not null,
-	idIngreso bigint Foreign Key references Ingreso(id) on delete cascade on update cascade not null,
-
-	constraint PK_Egreso Primary Key (id, idMedico, idIngreso)
-*/
 go
 insert Paciente (
 	cedula, 
@@ -80,8 +75,6 @@ insert Paciente (
 go
 select * from Paciente
 select * from Medico
+select * from RegistroClinico
 select * from Ingreso
-
-drop table Paciente
-drop table Medico
-drop table Ingreso
+select * from Egreso

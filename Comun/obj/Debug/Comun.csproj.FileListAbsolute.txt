@@ -1,6 +1,0 @@
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\bin\Debug\Comun.dll
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\bin\Debug\Comun.pdb
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\obj\Debug\Comun.csproj.AssemblyReference.cache
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\obj\Debug\Comun.csproj.CoreCompileInputs.cache
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\obj\Debug\Comun.dll
-C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Comun\obj\Debug\Comun.pdb
