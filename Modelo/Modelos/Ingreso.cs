@@ -23,5 +23,6 @@ namespace Modelo.Modelos
         public string observacion { get; set; }
     
         public virtual Paciente Paciente { get; set; }
+        public virtual RegistroClinico RegistroClinico { get; set; }
     }
 }

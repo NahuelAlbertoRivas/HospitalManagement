@@ -23,7 +23,6 @@ namespace Modelo.Modelos
     
         public virtual Medico Medico { get; set; }
         public virtual Paciente Paciente { get; set; }
-
         public virtual RegistroClinico RegistroClinico { get; set; }
     }
 }

@@ -12,7 +12,6 @@ namespace Modelo.Modelos
     using System;
     using System.Collections.Generic;
 
-
     public partial class RegistroClinico
     {
         public RegistroClinico()
@@ -20,7 +19,8 @@ namespace Modelo.Modelos
         this.Egreso = new HashSet<Egreso>();
         this.Ingreso = new HashSet<Ingreso>();
         }
-    public long id { get; set; }
+
+        public long id { get; set; }
         public long idPaciente { get; set; }
         public long idMedico { get; set; }
         public bool borrado { get; set; }
