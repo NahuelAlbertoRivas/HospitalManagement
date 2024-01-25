@@ -9,3 +9,10 @@ Details
 ' 03AccesoDatos ': "Contiene repositorios para hacer consultas a la DB, inserciones, actualizaciones..."
 ' 04ClienteRest ': "Registra lo necesario para implementar el consumo de servicios REST"
 ' 05LogicaDeNegocio ': "Provee la lógica de validación, accesos, así como para abstraer la comunicación entre la capa de presentación (' WebAPI ') y el resto"
+
+
+Referencias
+
+VMR: View Model Resources
+DAL: Data Access Layer
+BLL: Business Logic Layer
