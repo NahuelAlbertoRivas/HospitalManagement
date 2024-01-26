@@ -18,6 +18,8 @@ namespace Modelo.Modelos
         public Paciente()
         {
             this.RegistroClinico = new HashSet<RegistroClinico>();
+            this.Ingreso = new HashSet<Ingreso>();
+            this.Egreso = new HashSet<Egreso>();
         }
     
         public long id { get; set; }
@@ -32,5 +34,7 @@ namespace Modelo.Modelos
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegistroClinico> RegistroClinico { get; set; }
+        public virtual ICollection<Ingreso> Ingreso { get; set; }
+        public virtual ICollection<Egreso> Egreso { get; set; }
     }
 }

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Egreso">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+      <PropertyRef Name="idRegClinico" />
+    </Key>
+    <Property Name="idPaciente" Type="Int64" Nullable="false" />
+    <Property Name="idRegClinico" Type="Int64" Nullable="false" />
+    <Property Name="idMedico" Type="Int64" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tratamiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Medico" Relationship="Self.FK__Egreso__idMedico__123EB7A3" FromRole="Egreso" ToRole="Medico" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Egreso__idPacien__10566F31" FromRole="Egreso" ToRole="Paciente" />
+  </EntityType>
+  <EntityType Name="Ingreso">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+      <PropertyRef Name="idRegClinico" />
+    </Key>
+    <Property Name="idPaciente" Type="Int64" Nullable="false" />
+    <Property Name="idRegClinico" Type="Int64" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="nroSala" Type="Int32" Nullable="false" />
+    <Property Name="nroCama" Type="Int32" Nullable="false" />
+    <Property Name="diagnostico" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Ingreso__idPacie__07C12930" FromRole="Ingreso" ToRole="Paciente" />
+  </EntityType>
+  <EntityType Name="Medico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="esEspecialista" Type="Boolean" Nullable="false" />
+    <Property Name="habilitado" Type="Boolean" Nullable="false" />
+    <Property Name="borrado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Egreso" Relationship="Self.FK__Egreso__idMedico__123EB7A3" FromRole="Medico" ToRole="Egreso" />
+    <NavigationProperty Name="RegistroClinico" Relationship="Self.FK__RegistroC__idMed__00200768" FromRole="Medico" ToRole="RegistroClinico" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="borrado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Egreso" Relationship="Self.FK__Egreso__idPacien__10566F31" FromRole="Paciente" ToRole="Egreso" />
+    <NavigationProperty Name="Ingreso" Relationship="Self.FK__Ingreso__idPacie__07C12930" FromRole="Paciente" ToRole="Ingreso" />
+    <NavigationProperty Name="RegistroClinico" Relationship="Self.FK__RegistroC__idPac__7F2BE32F" FromRole="Paciente" ToRole="RegistroClinico" />
+  </EntityType>
+  <EntityType Name="RegistroClinico">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPaciente" Type="Int64" Nullable="false" />
+    <Property Name="idMedico" Type="Int64" Nullable="false" />
+    <Property Name="borrado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Medico" Relationship="Self.FK__RegistroC__idMed__00200768" FromRole="RegistroClinico" ToRole="Medico" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__RegistroC__idPac__7F2BE32F" FromRole="RegistroClinico" ToRole="Paciente" />
+  </EntityType>
+  <Association Name="FK__Egreso__idMedico__123EB7A3">
+    <End Role="Medico" Type="Self.Medico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Egreso">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Egreso__idPacien__10566F31">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Egreso">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingreso__idPacie__07C12930">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroC__idMed__00200768">
+    <End Role="Medico" Type="Self.Medico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegistroClinico" Type="Self.RegistroClinico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroClinico">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroC__idPac__7F2BE32F">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegistroClinico" Type="Self.RegistroClinico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroClinico">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbConexion" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Egreso" EntityType="Self.Egreso" />
+    <EntitySet Name="Ingreso" EntityType="Self.Ingreso" />
+    <EntitySet Name="Medico" EntityType="Self.Medico" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+    <EntitySet Name="RegistroClinico" EntityType="Self.RegistroClinico" />
+    <AssociationSet Name="FK__Egreso__idMedico__123EB7A3" Association="Self.FK__Egreso__idMedico__123EB7A3">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="Egreso" EntitySet="Egreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Egreso__idPacien__10566F31" Association="Self.FK__Egreso__idPacien__10566F31">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Egreso" EntitySet="Egreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingreso__idPacie__07C12930" Association="Self.FK__Ingreso__idPacie__07C12930">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroC__idMed__00200768" Association="Self.FK__RegistroC__idMed__00200768">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="RegistroClinico" EntitySet="RegistroClinico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroC__idPac__7F2BE32F" Association="Self.FK__RegistroC__idPac__7F2BE32F">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="RegistroClinico" EntitySet="RegistroClinico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

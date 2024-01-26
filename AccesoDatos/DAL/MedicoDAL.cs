@@ -48,7 +48,10 @@ namespace AccesoDatos.DAL
                 var query = db.Medico.Where(x => !x.borrado).Select(x => new MedicoVMR{ // ver consultas parciales, uso del ' .Where '; expresiones Lambda permiten declarar objetos del tipo tabla (estructura de DB) en tiempo de escritura
                     id = x.id,
                     cedula = x.cedula,
-                    nombre = x.nombre + " " + x.apellidoPaterno + (x.apellidoMaterno != null? (" " + x.apellidoMaterno) : ""),
+                    nombre = x.nombre, //+ " " + x.apellidoPaterno + (x.apellidoMaterno != null? (" " + x.apellidoMaterno) : ""),
+                    apellidoMaterno = x.apellidoMaterno,
+                    apellidoPaterno = x.apellidoPaterno,
+                    habilitado = x.habilitado,
                     esEspecialista = x.esEspecialista
                 });
 

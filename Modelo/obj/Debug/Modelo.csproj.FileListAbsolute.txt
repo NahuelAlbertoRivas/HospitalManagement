@@ -1,0 +1,14 @@
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\Modelo.dll.config
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\Modelo.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\Modelo.pdb
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\Comun.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\EntityFramework.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\Comun.pdb
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\EntityFramework.xml
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\obj\Debug\Modelo.csproj.AssemblyReference.cache
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\obj\Debug\Modelo.csproj.CopyComplete
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\obj\Debug\Modelo.dll
+C:\Users\54113\[Nahue] cursos\C#\HospitalManagement\Modelo\obj\Debug\Modelo.pdb

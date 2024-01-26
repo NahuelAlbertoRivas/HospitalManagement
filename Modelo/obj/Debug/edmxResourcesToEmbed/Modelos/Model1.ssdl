@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Egreso">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+      <PropertyRef Name="idRegClinico" />
+    </Key>
+    <Property Name="idPaciente" Type="bigint" Nullable="false" />
+    <Property Name="idRegClinico" Type="bigint" Nullable="false" />
+    <Property Name="idMedico" Type="bigint" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="tratamiento" Type="varchar(max)" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ingreso">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+      <PropertyRef Name="idRegClinico" />
+    </Key>
+    <Property Name="idPaciente" Type="bigint" Nullable="false" />
+    <Property Name="idRegClinico" Type="bigint" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="nroSala" Type="int" Nullable="false" />
+    <Property Name="nroCama" Type="int" Nullable="false" />
+    <Property Name="diagnostico" Type="varchar(max)" Nullable="false" />
+    <Property Name="observacion" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Medico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="esEspecialista" Type="bit" Nullable="false" />
+    <Property Name="habilitado" Type="bit" Nullable="false" />
+    <Property Name="borrado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="celular" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="borrado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegistroClinico">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPaciente" Type="bigint" Nullable="false" />
+    <Property Name="idMedico" Type="bigint" Nullable="false" />
+    <Property Name="borrado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Egreso__idMedico__123EB7A3">
+    <End Role="Medico" Type="Self.Medico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Egreso">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Egreso__idPacien__10566F31">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Egreso">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__Egreso__idRegCli__114A936A' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__Egreso__idRegCli__114A936A" />-->
+  <Association Name="FK__Ingreso__idPacie__07C12930">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__Ingreso__idRegCl__08B54D69' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__Ingreso__idRegCl__08B54D69" />-->
+  <Association Name="FK__RegistroC__idMed__00200768">
+    <End Role="Medico" Type="Self.Medico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegistroClinico" Type="Self.RegistroClinico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroClinico">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroC__idPac__7F2BE32F">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegistroClinico" Type="Self.RegistroClinico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroClinico">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Egreso" EntityType="Self.Egreso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingreso" EntityType="Self.Ingreso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistroClinico" EntityType="Self.RegistroClinico" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Egreso__idMedico__123EB7A3" Association="Self.FK__Egreso__idMedico__123EB7A3">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="Egreso" EntitySet="Egreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Egreso__idPacien__10566F31" Association="Self.FK__Egreso__idPacien__10566F31">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Egreso" EntitySet="Egreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingreso__idPacie__07C12930" Association="Self.FK__Ingreso__idPacie__07C12930">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroC__idMed__00200768" Association="Self.FK__RegistroC__idMed__00200768">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="RegistroClinico" EntitySet="RegistroClinico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroC__idPac__7F2BE32F" Association="Self.FK__RegistroC__idPac__7F2BE32F">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="RegistroClinico" EntitySet="RegistroClinico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

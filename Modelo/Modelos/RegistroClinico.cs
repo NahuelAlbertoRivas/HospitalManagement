@@ -16,8 +16,8 @@ namespace Modelo.Modelos
     {
         public RegistroClinico()
         {
-        this.Egreso = new HashSet<Egreso>();
-        this.Ingreso = new HashSet<Ingreso>();
+            this.Egreso = new HashSet<Egreso>();
+            this.Ingreso = new HashSet<Ingreso>();
         }
 
         public long id { get; set; }

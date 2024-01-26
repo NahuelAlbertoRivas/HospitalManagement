@@ -17,8 +17,10 @@ namespace Modelo.Modelos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medico()
         {
-            this.Egreso = new HashSet<Egreso>();
             this.RegistroClinico = new HashSet<RegistroClinico>();
+            this.Ingreso = new HashSet<Ingreso>();
+            this.Egreso = new HashSet<Egreso>();
+
         }
     
         public long id { get; set; }
@@ -29,10 +31,11 @@ namespace Modelo.Modelos
         public bool esEspecialista { get; set; }
         public bool habilitado { get; set; }
         public bool borrado { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Egreso> Egreso { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegistroClinico> RegistroClinico { get; set; }
+        public virtual ICollection<Ingreso> Ingreso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Egreso> Egreso { get; set; }
     }
 }
