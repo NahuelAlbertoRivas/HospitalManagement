@@ -11,7 +11,6 @@ namespace AccesoDatos.DAL
 {
     public class MedicoDAL{
         public static long Crear(Medico item){ // una vez creada la instancia, se devuelve el id
-            long id = 0;
 
             using (var db = DbConexion.Create())
             { // permite declarar la conexión a la DB
@@ -20,7 +19,7 @@ namespace AccesoDatos.DAL
                 db.SaveChanges();
             }
 
-            return id;
+            return item.id;
         }
 
         public static MedicoVMR LeerUno(long id){
